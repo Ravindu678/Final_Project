@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Booking Successful";
+    Layout = "_Layout";
+}
+
+<div class="success-container">
+    <div class="success-card animate-pop-in">
+        <div class="success-icon">&#10004;</div>
+        <h2>Booking Successful!</h2>
+        <p>Your booking has been completed successfully. Thank you!</p>
+        <a href="/" class="btn btn-success mt-3">Go to Home</a>
+    </div>
+</div>
+
+<style>
+    .success-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        background-color: #121212;
+        color: white;
+    }
+
+    .success-card {
+        background-color: #1e1e1e;
+        padding: 40px;
+        border-radius: 16px;
+        text-align: center;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        max-width: 500px;
+        width: 90%;
+        animation: fadeInUp 1s ease forwards;
+    }
+
+    .success-icon {
+        font-size: 60px;
+        color: #28a745;
+        margin-bottom: 20px;
+        animation: bounceIn 1s ease;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border: none;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+    }
+
+    @@keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @@keyframes bounceIn {
+        0% {
+            transform: scale(0.5);
+            opacity: 0;
+        }
+        60% {
+            transform: scale(1.2);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+</style>
+

@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Reports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        background-color: #121212;
+        color: #fff;
+    }
+
+    .report-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .report-card {
+        background-color: #1f1f1f;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .report-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6);
+    }
+
+    .report-card h4 {
+        margin-top: 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    .report-icon {
+        font-size: 2rem;
+        color: #0dcaf0;
+    }
+</style>
+
+<h2 class="mb-4">📊 Reports Dashboard</h2>
+
+<div class="report-cards">
+    <a asp-area="Admin" asp-controller="Reports" asp-action="EventBookingReport" class="report-card">
+        <div class="report-icon"><i class="bi bi-calendar-check"></i></div>
+        <h4>Event Booking Report</h4>
+        <p>View bookings and revenue by event</p>
+    </a>
+
+    <a asp-area="Admin" asp-controller="Reports" asp-action="UserBookingSummary" class="report-card">
+        <div class="report-icon"><i class="bi bi-people-fill"></i></div>
+        <h4>User Booking Summary</h4>
+        <p>Track user-specific bookings</p>
+    </a>
+
+    <a asp-area="Admin" asp-controller="Reports" asp-action="DailySalesReport" class="report-card">
+        <div class="report-icon"><i class="bi bi-currency-dollar"></i></div>
+        <h4>Daily Sales Report</h4>
+        <p>Monitor daily income and ticket sales</p>
+    </a>
+</div>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">

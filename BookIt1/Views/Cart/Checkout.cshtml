@@ -1,0 +1,115 @@
+﻿@*@model BookIt1.Models.CheckoutViewModel
+
+<h2>Checkout</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Event</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.CartItems)
+        {
+            <tr>
+                <td>@item.Event.Title</td>
+                <td>@item.Event.Price</td>
+                <td>@item.Quantity</td>
+                <td>@(item.Quantity * item.Event.Price)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="total">
+    <h4>Total: @Model.Total</h4>
+</div>
+
+<!-- Payment Integration -->
+<div class="payment">
+    <h4>Payment</h4>
+    <form method="post">
+        <!-- Placeholder for payment gateway -->
+       <a class="btn btn-success" href="@Url.Action("PaymentForm", "Cart")">Pay Now</a>
+        <!--<a class="btn btn-success" href="@Url.Action("Review", "Checkout")">Pay Now</a>-->
+
+
+    </form>
+</div>*@
+
+@model BookIt1.Models.CheckoutViewModel
+
+<div class="container mt-5">
+    <div class="card bg-dark text-light shadow-lg rounded-4 p-4">
+        <h2 class="text-warning mb-4">🧾 Checkout</h2>
+
+        <table class="table table-dark table-bordered table-hover rounded">
+            <thead class="table-secondary text-dark">
+                <tr>
+                    <th>Event</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.CartItems)
+                {
+                    <tr>
+                        <td>@item.Event.Title</td>
+                        <td>Rs. @item.Event.Price.ToString("N2")</td>
+                        <td>@item.Quantity</td>
+                        <td>Rs. @(item.Quantity * item.Event.Price)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="text-end mt-4">
+            <h4 class="text-success">Total: Rs. @Model.Total</h4>
+        </div>
+
+        <!-- Payment Integration -->
+        <div class="payment mt-4">
+            <h4 class="text-info">Payment</h4>
+            <form method="post" action="@Url.Action("CreateCheckoutSession", "Payment")">
+                <button type="submit" class="btn btn-success btn-lg mt-3">💳 Pay Now</button>
+            </form>
+
+            <!--<form method="post">
+                <!-- Placeholder for payment gateway -->
+                <!--<a class="btn btn-success btn-lg mt-3" href="@@Url.Action("PaymentForm", "Cart")">💳 Pay Now</a>-->
+                <!--<a class="btn btn-success btn-lg mt-3" href="@@Url.Action("Index", "Payment")">💳 Pay Now</a>
+            </form>-->
+
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #121212 !important;
+        color: #e0e0e0;
+    }
+
+    .table td, .table th {
+        vertical-align: middle;
+    }
+
+    .btn-success:hover {
+        background-color: #28a745 !important;
+        box-shadow: 0 0 10px #28a74566;
+    }
+
+    .table-dark {
+        border-color: #444;
+    }
+
+    .card {
+        border-radius: 1rem;
+    }
+</style>
+

@@ -1,0 +1,121 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <style>
+        /* Background */
+        body {
+            background: radial-gradient(circle, rgba(18,18,18,1) 0%, rgba(0,0,0,1) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        /* Login Container */
+        .login-box {
+            width: 350px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.6);
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        /* Form Elements */
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+            .input-group label {
+                display: block;
+                text-align: left;
+                margin-bottom: 5px;
+                font-size: 14px;
+            }
+
+            .input-group input {
+                width: 100%;
+                padding: 12px;
+                border-radius: 8px;
+                border: none;
+                background: rgba(0, 255, 255, 0.1);
+                color: white;
+                outline: none;
+                font-size: 16px;
+            }
+
+                .input-group input:focus {
+                    box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.7);
+                }
+
+        /* Login Button */
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #00feba, #5b548a);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0px 5px 15px rgba(0, 255, 255, 0.5);
+        }
+
+            .btn-login:hover {
+                background: linear-gradient(135deg, #5b548a, #00feba);
+                box-shadow: 0px 5px 25px rgba(0, 255, 255, 0.8);
+            }
+
+        /* Error Message */
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Neon Glow Effect */
+        .neon-text {
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0px 0px 10px cyan, 0px 0px 20px cyan, 0px 0px 30px cyan;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-box">
+        <h2 class="neon-text">Admin Login</h2>
+        <form method="post" asp-action="Login" asp-controller="Account">
+            <div class="input-group">
+                <label>Email:</label>
+                <input type="email" name="email" required placeholder="Enter your email" />
+            </div>
+
+            <div class="input-group">
+                <label>Password:</label>
+                <input type="password" name="password" required placeholder="Enter your password" />
+            </div>
+
+            <button type="submit" class="btn-login">Login</button>
+        </form>
+
+        @if (ViewBag.Error != null)
+        {
+            <p class="error-message">@ViewBag.Error</p>
+        }
+    </div>
+
+</body>
+</html>

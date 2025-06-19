@@ -1,0 +1,48 @@
+﻿@model List<BookIt1.Areas.Admin.Models.ViewModels.DailySalesReportViewModel>
+
+@{
+    ViewData["Title"] = "Daily Sales Revenue Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-primary">📊 Daily Sales Revenue Report</h2>
+        <form method="post" asp-action="ExportDailySalesReport" asp-controller="Reports">
+            <button type="submit" class="btn btn-outline-primary">
+                <i class="bi bi-file-earmark-arrow-down"></i> Export PDF
+            </button>
+        </form>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover align-middle shadow-sm border">
+            <thead class="table-primary text-dark">
+                <tr>
+                    <th>Date</th>
+                    <th>Total Tickets Sold</th>
+                    <th>Total Revenue (LKR)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Date.ToString("dd MMM yyyy")</td>
+                            <td>@item.TotalTicketsSold</td>
+                            <td class="text-success fw-semibold">@item.TotalRevenue.ToString("N2")</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="3" class="text-center text-muted">No data available.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

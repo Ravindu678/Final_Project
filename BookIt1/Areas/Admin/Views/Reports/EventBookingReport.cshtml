@@ -1,0 +1,75 @@
+﻿@model List<BookIt1.Areas.Admin.Models.ViewModels.EventBookingReportViewModel>
+
+@{
+    ViewData["Title"] = "📊 Event Booking Summary";
+    var updatedDate = DateTime.Now.ToString("dd MMM yyyy");
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-dark">@ViewData["Title"]</h2>
+        <span class="text-muted">Updated on <strong>@updatedDate</strong></span>
+    </div>
+
+    <div class="card border-0 shadow rounded-4">
+        <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center px-4 py-3">
+            <div>
+                <h5 class="mb-0 text-secondary">📅 Event-Wise Ticket Report</h5>
+                <small class="text-muted">Shows total sales, ticket counts and unique users per event.</small>
+            </div>
+            <div>
+                <!-- Optional export/download buttons -->
+               <!-- <button class="btn btn-outline-primary btn-sm">Export PDF</button>-->
+                <form asp-action="ExportEventBookingReport" method="post">
+                    <button type="submit" class="btn btn-outline-primary">
+                        <i class="bi bi-download me-1"></i> Export Report
+                    </button>
+                </form>
+
+
+            </div>
+        </div>
+
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover align-middle mb-0">
+                    <thead class="table-primary text-dark">
+                        <tr>
+                            <th class="ps-4">🎫 Event Name</th>
+                            <th>Date</th>
+                            <th class="text-center">Tickets Sold</th>
+                            <th class="text-end">Revenue (LKR)</th>
+                            <th class="text-center">👥 Unique Bookers</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="ps-4 fw-semibold">@item.EventName</td>
+                                    <td>@item.EventDate.ToString("dd MMM yyyy")</td>
+                                    <td class="text-center">
+                                        <span class="badge bg-info text-dark px-3">@item.TotalTicketsSold</span>
+                                    </td>
+                                    <td class="text-end text-success fw-bold">@item.TotalRevenue.ToString("N2")</td>
+                                    <td class="text-center">
+                                        <span class="badge bg-dark-subtle text-dark px-3">@item.UniqueBookers</span>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="5" class="text-center text-muted py-4 fst-italic">No bookings data found.</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

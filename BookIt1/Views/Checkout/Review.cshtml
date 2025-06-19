@@ -1,0 +1,55 @@
+﻿@*@model BookIt1.Models.ReviewViewModel
+
+@{
+    ViewData["Title"] = "Review Booking";
+}
+
+<h2>Review Your Booking</h2>
+
+<div>
+    <h4>User Details</h4>
+    <p><strong>Name:</strong> @Model.Name</p>
+    <p><strong>Email:</strong> @Model.Email</p>
+</div>
+
+<div>
+    <h4>Selected Events</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CartItems)
+            {
+                <tr>
+                    <td>@item.Event.Title</td>
+                    <td>@item.Event.Price.ToString("C")</td>
+                    <td>@item.Quantity</td>
+                    <td>@(item.Event.Price * item.Quantity).ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-end"><strong>Total:</strong></td>
+                <td>@Model.TotalPrice.ToString("C")</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<form asp-action="ConfirmBooking" method="post">
+    @* Hidden fields to send back model data *@
+   @* <input type="hidden" asp-for="UserId" />
+    <input type="hidden" asp-for="Name" />
+    <input type="hidden" asp-for="Email" />
+    <input type="hidden" asp-for="TotalPrice" />
+
+    <button type="submit" class="btn btn-primary">Final Pay</button>
+</form>*@
+

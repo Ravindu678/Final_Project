@@ -1,0 +1,108 @@
+﻿@*@{
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout !=  null)
+    {
+        Layout = parentLayout.ToString();
+    }
+    else
+    {
+        Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+    }
+}
+
+<h1>Manage your account</h1>
+
+<div>
+    <h2>Change your account settings</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_ManageNav" />
+        </div>
+        <div class="col-md-9">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}*@
+
+@{
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout != null)
+    {
+        Layout = parentLayout.ToString();
+    }
+    else
+    {
+        Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+    }
+}
+
+<style>
+    body {
+        background-color: #121212;
+        color: #f1f1f1;
+    }
+
+    .manage-container {
+        background-color: #1e1e1e;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .manage-heading {
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: #00bcd4;
+    }
+
+    .form-control {
+        background-color: #2b2b2b;
+        color: #aaaaaa;
+        border: 1px solid #444;
+    }
+
+    .form-control:focus {
+        background-color: #2b2b2b;
+        color: #fff;
+        border-color: #00bcd4;
+        box-shadow: 0 0 5px #00bcd4;
+    }
+
+    .nav-pills .nav-link.active {
+        background-color: #00bcd4;
+        color: #121212;
+    }
+
+    .nav-pills .nav-link {
+        color: #ccc;
+    }
+
+    .nav-pills .nav-link:hover {
+        color: #fff;
+    }
+
+    hr {
+        border-color: #333;
+    }
+</style>
+
+<div class="manage-container mt-4">
+    <div class="row">
+        <div class="col-md-3">
+            <partial name="_ManageNav" />
+        </div>
+        <div class="col-md-9">
+            <div class="manage-heading">Account Settings</div>
+            <hr />
+            @RenderBody()
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}

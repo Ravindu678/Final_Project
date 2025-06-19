@@ -1,0 +1,143 @@
+﻿@*@model IEnumerable<BookIt1.Models.CartItem>
+@{
+    ViewData["Title"] = "Your Cart";
+}
+
+<h2>Your Cart</h2>
+
+@if (!Model.Any())
+{
+    <p>Your cart is empty. Start adding some events!</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Event</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Event.Title</td>
+                    <td>@item.Event.Price</td>
+                    <td>
+                        <form asp-action="UpdateCart" method="post">
+                            <input type="number" name="quantity" value="@item.Quantity" min="1" />
+                            <input type="hidden" name="cartItemId" value="@item.Id" />
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </form>
+                    </td>
+                    <td>@(item.Quantity * item.Event.Price)</td>
+                    <td>
+                        <form asp-action="RemoveFromCart" method="post">
+                            <input type="hidden" name="cartItemId" value="@item.Id" />
+                            <button type="submit" class="btn btn-danger">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="total">
+        <h4>Total: @Model.Sum(item => item.Quantity * item.Event.Price)</h4>
+    </div>
+
+    <a href="@Url.Action("Checkout", "Cart")" class="btn btn-success">Proceed to Checkout</a>
+}*@
+
+@model IEnumerable<BookIt1.Models.CartItem>
+@{
+    ViewData["Title"] = "Your Cart";
+}
+
+<div class="container mt-5">
+    <div class="card bg-dark text-light shadow-lg rounded-4 p-4">
+        <h2 class="text-warning mb-4">🛒 Your Cart</h2>
+
+        @if (!Model.Any())
+        {
+            <div class="alert alert-secondary">Your cart is empty. Start adding some events!</div>
+        }
+        else
+        {
+            <table class="table table-dark table-hover table-bordered align-middle rounded">
+                <thead class="table-secondary text-dark">
+                    <tr>
+                        <th>Event</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Event.Title</td>
+                            <td>Rs. @item.Event.Price</td>
+                            <td>
+                                <form asp-action="UpdateCart" method="post" class="d-flex gap-2">
+                                    <input type="number"
+                                           name="quantity"
+                                           value="@item.Quantity"
+                                           min="1"
+                                           class="form-control form-control-sm bg-dark text-light border-secondary"
+                                           style="width: 80px;" />
+                                    <input type="hidden" name="cartItemId" value="@item.Id" />
+                                    <button type="submit" class="btn btn-outline-warning btn-sm">Update</button>
+                                </form>
+                            </td>
+                            <td>Rs. @(item.Quantity * item.Event.Price)</td>
+                            <td>
+                                <form asp-action="RemoveFromCart" method="post">
+                                    <input type="hidden" name="cartItemId" value="@item.Id" />
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">Remove</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="text-end mt-4">
+                <h4 class="text-success">Total: Rs. @Model.Sum(item => item.Quantity * item.Event.Price).ToString("N2")</h4>
+                <a href="@Url.Action("Checkout", "Cart")" class="btn btn-success btn-lg mt-3">Proceed to Checkout</a>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #121212 !important;
+        color: #f8f9fa;
+    }
+
+    .table th,
+    .table td {
+        vertical-align: middle;
+    }
+
+    .btn-outline-warning:hover {
+        background-color: #ff9800;
+        color: #fff;
+    }
+
+    .btn-outline-danger:hover {
+        background-color: #dc3545;
+        color: #fff;
+    }
+
+    .form-control:focus {
+        box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+    }
+</style>

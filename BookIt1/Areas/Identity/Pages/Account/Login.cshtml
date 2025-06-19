@@ -1,0 +1,92 @@
+﻿
+@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+    Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
+}
+
+<style>
+    body {
+        background-color: #f4f6f8;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    section {
+        max-width: 400px;
+        margin: 80px auto;
+        padding: 2rem 2.5rem;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #333;
+    }
+
+    .form-floating label {
+        color: #666;
+    }
+
+    .form-control {
+        background-color: #f9f9f9;
+        color: #333;
+        border: 1px solid #ccc;
+        transition: all 0.2s;
+    }
+
+        .form-control:focus {
+            border-color: #0061f2;
+            box-shadow: 0 0 0 0.15rem rgba(0, 97, 242, 0.25);
+            background-color: #fff;
+        }
+
+    .btn-primary {
+        background-color: #0061f2;
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background-color: #004bb5;
+        }
+
+    .text-danger {
+        font-size: 0.9rem;
+        margin-top: 0.25rem;
+    }
+</style>
+
+<section>
+    <form id="account" method="post">
+        <h2>Welcome Back</h2>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+        <div class="form-floating mb-3">
+            <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+            <label asp-for="Input.Email">Email address</label>
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="Password" />
+            <label asp-for="Input.Password">Password</label>
+            <span asp-validation-for="Input.Password" class="text-danger"></span>
+        </div>
+
+        <div>
+            <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log In</button>
+        </div>
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

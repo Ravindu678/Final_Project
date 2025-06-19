@@ -1,0 +1,87 @@
+﻿@{
+    Layout = "_Layout";
+}
+@model IEnumerable<BookIt1.Areas.Admin.Models.Event>
+
+@{
+    ViewData["Title"] = "Event Management";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+       <h2 class="section-heading">Event List</h2>
+        <div class="d-flex">
+            <a asp-area="Admin" asp-controller="Event" asp-action="Create" class="btn btn-primary me-2">
+                Add New Event
+            </a>
+            <a asp-area="Admin" asp-controller="AdminDashboard" asp-action="Index" class="btn btn-secondary">
+                Go to Dashboard
+            </a>
+        </div>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Event ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Event Date</th>
+                    <th>Total Tickets</th>
+                    <th>Location</th>
+                    <th>Available Tickets</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ev in Model)
+                {
+                    <tr>
+                        <td>@ev.Id</td>
+                        <td>@ev.Title</td>
+                        <td>@ev.Description</td>
+                        <td>@ev.EventDate.ToString("yyyy-MM-dd")</td>
+                        <td>@ev.TotalTickets</td>
+                        <td>@ev.Location</td>
+                        <td>@ev.AvailableTickets</td>
+                        <td>@ev.Category</td>
+                        <td>Rs. @ev.Price.ToString("N2")</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@ev.Id" class="btn btn-primary btn-sm">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@ev.Id" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-info">No events found.</div>
+    }
+</div>
+
+<style>
+    body {
+        background-color: #5A5A5A !important;
+    }
+.section-heading {
+    text-align: center;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 40px 0 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+</style>
+
+
+

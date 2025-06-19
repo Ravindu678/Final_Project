@@ -1,0 +1,145 @@
+﻿@model IEnumerable<BookIt1.Areas.Admin.Models.Event>
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- jQuery (required by Slick) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Slick Carousel -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
+
+<div style="text-align: center;">
+    <h2 style="font-size: 36px; font-weight: bold; color: orange;">BookIt.!</h2>
+    <p style="font-size: 16px; color: green; margin-top: -10px;">Book events. Live moments.</p>
+</div>
+
+
+<div class="event-slider">
+    @foreach (var ev in Model)
+    {
+        <div class="event-slide">
+            <div class="event-card">
+                <img src="@ev.ImagePath" alt="Event Image" />
+                <div class="card-body">
+                    <h3 class="card-title">@ev.Title</h3>
+                    <p><strong>📍 Location:</strong> @ev.Location</p>
+                    <p><strong>📅 Date:</strong> @ev.EventDate.ToString("yyyy-MM-dd")</p>
+                    @*<p><strong>💰 Price:</strong> @ev.Price.ToString("C")</p>*@
+                    <div class="book-now-container">
+                        <a href="@Url.Action("EventDetails", "Home", new { id = ev.Id })" class="book-now-btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .event-slider {
+        margin: 0 auto;
+        width: 90%;
+    }
+
+    .event-slide {
+        padding: 10px;
+    }
+
+    .event-card {
+        background: #1e1e1e;
+        border-radius: 15px;
+        overflow: hidden;
+        text-align: center;
+        color: white;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
+
+        .event-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .book-now-btn {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 20px;
+        background-color: #ff6a00;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 6px;
+        transition: background 0.3s ease;
+    }
+
+        .book-now-btn:hover {
+            background-color: #ee0979;
+        }
+
+    body {
+        background-color: #121212 !important;
+    }
+
+    .modern-heading {
+        font-size: 2.8rem;
+        font-weight: 700;
+        text-align: center;
+        color: transparent;
+        background-image: linear-gradient(90deg, #ff6a00, #ee0979);
+        -webkit-background-clip: text;
+        background-clip: text;
+        margin-bottom: 50px;
+        letter-spacing: 1px;
+        animation: fadeInUp 0.8s ease-out;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        $('.event-slider').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            speed: 8000,                  // Smooth transition speed
+            autoplay: true,
+            autoplaySpeed: 0,             // No delay between transitions
+            cssEase: 'linear',            // Makes the scroll smooth
+            infinite: true,
+            arrows: false,
+            dots: false,
+            pauseOnHover: false,          // Keeps moving even on hover
+            responsive: [
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 2
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+    });
+</script>
+
+
+    
+
+
+
+

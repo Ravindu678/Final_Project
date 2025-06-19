@@ -1,0 +1,204 @@
+﻿@*@{
+    ViewBag.Title = "Payment Success";
+}
+<div class="text-center mt-5">
+    <h2 class="text-success">🎉 Payment Successful!</h2>
+    <p>Your payment was processed and your booking is confirmed.</p>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-primary mt-3">Return to Home</a>
+</div>*@
+
+@*@{
+    ViewBag.Title = "Payment Success";
+}
+
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="success-box bg-dark text-light p-5 rounded shadow-lg text-center">
+
+        <!-- Animated Checkmark -->
+        <div class="checkmark-container mb-4">
+            <div class="checkmark-circle">
+                <div class="checkmark-stem"></div>
+                <div class="checkmark-kick"></div>
+            </div>
+        </div>
+
+        <h2 class="text-success">🎉 Payment Successful!</h2>
+        <p class="lead">Your payment was processed and your booking is confirmed.</p>
+        <a href="@Url.Action("Index", "Home")" class="btn btn-outline-light mt-4">🏠 Return to Home</a>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #121212 !important;
+        color: #e0e0e0;
+    }
+
+    .success-box {
+        max-width: 500px;
+    }
+
+    /* Checkmark animation */
+    .checkmark-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .checkmark-circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: inline-block;
+        border: 5px solid #28a745;
+        position: relative;
+        animation: pop 0.4s ease-in-out;
+    }
+
+    .checkmark-stem {
+        position: absolute;
+        width: 4px;
+        height: 30px;
+        background-color: #28a745;
+        left: 36px;
+        top: 18px;
+        transform: rotate(45deg);
+        transform-origin: left top;
+        animation: draw-stem 0.4s ease-out 0.3s forwards;
+        opacity: 0;
+    }
+
+    .checkmark-kick {
+        position: absolute;
+        width: 4px;
+        height: 15px;
+        background-color: #28a745;
+        left: 27px;
+        top: 38px;
+        transform: rotate(-45deg);
+        transform-origin: left top;
+        animation: draw-kick 0.4s ease-out 0.6s forwards;
+        opacity: 0;
+    }
+
+    @@keyframes pop {
+        0% { transform: scale(0); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+
+    @@keyframes draw-stem {
+        to { opacity: 1; }
+    }
+
+    @@keyframes draw-kick {
+        to { opacity: 1; }
+    }
+
+    .btn-outline-light:hover {
+        background-color: #28a745;
+        border-color: #28a745;
+        color: #fff;
+    }
+</style>*@
+
+@{
+    ViewBag.Title = "Payment Success";
+}
+
+<div class="payment-success-container">
+    <div class="success-card">
+        <div class="success-icon">
+            <div class="checkmark">&#10004;</div>
+        </div>
+        <h2 class="success-title">Payment Successful!</h2>
+        <p class="success-message">Your payment has been processed and your booking is confirmed. Thank you!</p>
+        <a href="@Url.Action("Index", "Home")" class="btn-go-home">Return to Home</a>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #0e0e0e;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .payment-success-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 90vh;
+        padding: 20px;
+    }
+
+    .success-card {
+        background: #1c1c1c;
+        color: #e0e0e0;
+        padding: 40px 30px;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0, 255, 128, 0.2);
+        text-align: center;
+        animation: fadeInUp 0.8s ease-out;
+        max-width: 500px;
+        width: 100%;
+    }
+
+    .success-icon {
+        background: linear-gradient(145deg, #1f1f1f, #2a2a2a);
+        border: 3px solid #28a745;
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 20px rgba(40, 167, 69, 0.4);
+        animation: popIn 0.5s ease-in-out;
+    }
+
+    .checkmark {
+        font-size: 40px;
+        color: #28a745;
+        font-weight: bold;
+    }
+
+    .success-title {
+        font-size: 28px;
+        margin-bottom: 10px;
+        color: #aaffaa;
+    }
+
+    .success-message {
+        font-size: 16px;
+        color: #cfcfcf;
+        margin-bottom: 30px;
+    }
+
+    .btn-go-home {
+        padding: 12px 24px;
+        background-color: #28a745;
+        color: #ffffff;
+        border: none;
+        border-radius: 30px;
+        text-decoration: none;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        font-weight: 600;
+    }
+
+    .btn-go-home:hover {
+        background-color: #24c437;
+        transform: scale(1.05);
+    }
+
+    @@keyframes popIn {
+        0% { transform: scale(0.3); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+
+    @@keyframes fadeInUp {
+        0% { transform: translateY(40px); opacity: 0; }
+        100% { transform: translateY(0); opacity: 1; }
+    }
+</style>
+
+

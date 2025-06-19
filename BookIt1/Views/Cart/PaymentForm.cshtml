@@ -1,0 +1,105 @@
+﻿@*@model PaymentView
+
+<h2>Payment Form</h2>
+
+<form asp-action="PaymentForm" method="post">
+    <div>
+        <label>Full Name</label>
+        <input asp-for="FullName" class="form-control" required />
+    </div>
+    <div>
+        <label>Email</label>
+        <input asp-for="Email" class="form-control" required />
+    </div>
+    <div>
+        <label>Phone Number</label>
+        <input asp-for="PhoneNumber" class="form-control" required />
+    </div>
+   <!-- <div>
+        <label>Notes</label>
+        <textarea asp-for="Notes" class="form-control"></textarea>
+    </div>-->
+    <hr />
+    <h4>Payment Details</h4>
+    <div>
+        <label>Card Number</label>
+        <input asp-for="CardNumber" class="form-control" required />
+    </div>
+    <div>
+        <label>Expiry (MM/YY)</label>
+        <input asp-for="Expiry" class="form-control" required />
+    </div>
+    <div>
+        <label>CVV</label>
+        <input asp-for="CVV" class="form-control" required />
+    </div>
+    <br />
+    <button type="submit" class="btn btn-success">Confirm & Pay Rs. @Model.TotalAmount.ToString("N2")</button>
+</form>*@
+
+@model PaymentView
+
+<div class="container mt-5">
+    <div class="card bg-dark text-light shadow-lg rounded-4 p-4">
+        <h2 class="text-warning mb-4">💳 Payment Form</h2>
+
+        <form asp-action="PaymentForm" method="post">
+            <div class="mb-3">
+                <label class="form-label">Full Name</label>
+                <input asp-for="FullName" class="form-control bg-secondary text-light border-0" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input asp-for="Email" class="form-control bg-secondary text-light border-0" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Phone Number</label>
+                <input asp-for="PhoneNumber" class="form-control bg-secondary text-light border-0" required />
+            </div>
+
+            <hr class="border-light" />
+            <h4 class="text-info mt-4">Payment Details</h4>
+
+            <div class="mb-3">
+                <label class="form-label">Card Number</label>
+                <input asp-for="CardNumber" class="form-control bg-secondary text-light border-0" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Expiry (MM/YY)</label>
+                <input asp-for="Expiry" class="form-control bg-secondary text-light border-0" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">CVV</label>
+                <input asp-for="CVV" class="form-control bg-secondary text-light border-0" required />
+            </div>
+
+            <div class="text-end mt-4">
+                <button type="submit" class="btn btn-success btn-lg">
+                    ✅ Confirm & Pay Rs. @Model.TotalAmount.ToString("N2")
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #121212 !important;
+        color: #e0e0e0;
+    }
+
+    .form-control:focus {
+        box-shadow: 0 0 5px #28a74588;
+        border-color: #28a745;
+    }
+
+    .btn-success:hover {
+        background-color: #28a745 !important;
+        box-shadow: 0 0 10px #28a74566;
+    }
+
+    .card {
+        border-radius: 1rem;
+    }
+</style>
+

@@ -1,0 +1,165 @@
+﻿@model List<BookIt1.Areas.Admin.Models.Event>
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Recommended Events";
+}
+
+<section class="event-section">
+    <div class="event-wrapper">
+        <h2 class="modern-heading">Recommended Events for You</h2>
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="event-grid">
+                @foreach (var ev in Model)
+                {
+                    <div class="event-card">
+                        <img src="@ev.ImagePath" alt="Event Image" />
+                        <div class="card-body">
+                            <h3 class="card-title">@ev.Title</h3>
+                            <p class="card-text"><strong>📍 Location:</strong> @ev.Location</p>
+                            <p class="card-text"><strong>📅 Date:</strong> @ev.EventDate.ToString("yyyy-MM-dd")</p>
+                            <p class="card-text"><strong>🗂️ Category:</strong> @ev.Category</p>
+
+                            <div class="book-now-container">
+                                <a href="@Url.Action("EventDetails", "Home", new { id = ev.Id })" class="book-now-btn">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info text-center">No recommendations available yet. Book some events to get personalized suggestions!</div>
+        }
+    </div>
+</section>
+
+<style>
+    body {
+        background-color: #121212 !important;
+    }
+
+    .event-section {
+        background-color: #121212;
+        padding: 60px 0;
+        color: #fff;
+    }
+
+    .event-wrapper {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 40px;
+    }
+
+    .modern-heading {
+        font-size: 2.8rem;
+        font-weight: 700;
+        text-align: center;
+        color: transparent;
+        background-image: linear-gradient(90deg, #ff6a00, #ee0979);
+        -webkit-background-clip: text;
+        background-clip: text;
+        margin-bottom: 50px;
+        letter-spacing: 1px;
+        animation: fadeInUp 0.8s ease-out;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @@keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .event-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: flex-start;
+    }
+
+    .event-card {
+        background: #1e1e1e;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        width: calc(33.333% - 20px);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .event-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+        color: #ffffff;
+    }
+
+    .card-text {
+        font-size: 0.95rem;
+        margin: 6px 0;
+        color: #cccccc;
+    }
+
+    .book-now-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+    .book-now-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background: linear-gradient(90deg, #ff6a00, #ee0979);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background 0.3s ease, transform 0.2s;
+        box-shadow: 0 4px 12px rgba(255, 105, 135, 0.2);
+    }
+
+        .book-now-btn:hover {
+            background: linear-gradient(90deg, #ee0979, #ff6a00);
+            transform: translateY(-2px);
+        }
+
+    @@media (max-width: 992px) {
+        .event-card {
+            width: calc(50% - 15px);
+        }
+    }
+
+    @@media (max-width: 576px) {
+        .event-card {
+            width: 100%;
+        }
+    }
+</style>
